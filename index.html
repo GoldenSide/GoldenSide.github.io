@@ -62,6 +62,84 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-兼容性" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/06/兼容性/" class="article-date">
+  <time datetime="2018-11-06T01:30:15.478Z" itemprop="datePublished">2018-11-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/06/兼容性/">移动端的兼容性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="页面配置初始化等的兼容给性"><a href="#页面配置初始化等的兼容给性" class="headerlink" title="页面配置初始化等的兼容给性"></a>页面配置初始化等的兼容给性</h2><h3 id="viewport和flexible的加载的先后顺序影响页面是否会溢出-我们举个例子："><a href="#viewport和flexible的加载的先后顺序影响页面是否会溢出-我们举个例子：" class="headerlink" title="viewport和flexible的加载的先后顺序影响页面是否会溢出 我们举个例子："></a>viewport和flexible的加载的先后顺序影响页面是否会溢出 我们举个例子：</h3><pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0,
+maximum-scale=1.0, minimum-scale=1.0, user-scalable=no&quot; /&gt;
+</code></pre><p>  以上这段代码是我们经常会用的移动web页面适配的代码，基本意思是：设置浏览器的宽度等于设备宽度，初始缩放比例1:1,最大缩放比例为1:1, 最小缩放比例为1:1,禁止用户缩放操作，然后勒，列举几个兼容性问题（主要针对安卓和ios）：</p>
+<hr>
+<p>  <strong><em>在苹果的规范中，meta的viewport中有以下属性:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">width</th>
+<th style="text-align:left">设置layout viewport  的宽度，为一个正整数，或字符串”width-device”</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">initial-scale</td>
+<td style="text-align:left">设置页面的初始缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td style="text-align:center">minimum-scale</td>
+<td style="text-align:left">允许用户的最小缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td style="text-align:center">maximum-scale</td>
+<td style="text-align:left">允许用户的最大缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td style="text-align:center">height</td>
+<td style="text-align:left">设置layout viewport  的高度，这个属性对我们并不重要，很少使用</td>
+</tr>
+<tr>
+<td style="text-align:center">user-scalable</td>
+<td style="text-align:left">是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许</td>
+</tr>
+</tbody>
+</table>
+<p>  <strong> PS </strong>:说明一下“layout viewport” ,“visual viewport”, “ideal viewport”三者的区别<br>   ![layout viewport] : ‘../img/layout_viewport.png’<br>   ![visual viewport] : ‘../img/visual_viewport.png’<br>   ![ideal  viewport] : ‘../img/ideal_viewport1.png’<br>   ![ideal  viewport] : ‘../img/ideal_viewport2.png’</p>
+<blockquote>
+<p>layout viewport是指浏览器的真实宽高，在未设置content的时候，一般会大于设备的宽，visual viewport为屏幕可见宽高，ideal viewport为开发时的理想宽高</p>
+</blockquote>
+<p>  <strong>设置<code>content=&#39;&#39;</code></strong><br>      即将设置为空，当页面的元素最大的宽度为980px时,安卓和ios都会自我调节dpi,网页宽度为屏幕宽度，当超出这个宽度的时候，页面会溢出<br>     且可以缩放至大于等于1.0倍<br>  <strong>设置 <code>content=&quot;width=device-width&quot;</code></strong><br>      页面的内容宽度大于设备的宽度的时候，在安卓和ios设备上都不会自适应屏幕的宽度，会出现溢出的现象，即用户能通过拖动页面来看到溢出的部分，而且可以缩放小于等于1.0倍</p>
+<p>  <strong>设置 <code>content=&quot;user-scalable=no&quot;</code></strong><br>     页面的宽度大于设备的宽度的时候，在安卓和ios设备上页面仍然会按照内容的实际宽度来显示，且不能缩放了。</p>
+<p>  <strong>设置 <code>content=&quot;width=device-width&quot;</code></strong><br>      对于ios设备，设置width可以生效，但对于android，设置width并不会生效。ios设备，缩放的比率即dpi是通过你设置的width和设置真实分辨率自动计算的，而android下你设置width无效，你能设置的是一个特殊的字段target-densitydpi，关于target-densitydpi可以参考一下这篇文章：<a href="http://hi.baidu.com/j_fo/blog/item/748361279ebccd18908f9d7d.html。也就是说，有三个变量：浏览器width、设备真实width、dpi。" target="_blank" rel="noopener">http://hi.baidu.com/j_fo/blog/item/748361279ebccd18908f9d7d.html。也就是说，有三个变量：浏览器width、设备真实width、dpi。</a> 我们简单地用个公式来表达它们之间的关系吧（并非真实关系，简单说明用） 设备真实width * dpi = 浏览器width，这里的三个变量，设备真实width是个我们不能操作的已知值，另外两个变量我们可以设置一个来影响另一个，在ios中，我们能改的是浏览器width，dpi自动生成，而在android中，我们能改的是dpi，浏览器width自动生成。对于android，无论我们如何设置width，也不会对浏览器width产生影响。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/06/兼容性/" data-id="cjo5kd6ga0000lssstk8aqw6x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/10/25/hello-world/" class="article-date">
@@ -97,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/25/hello-world/" data-id="cjnnxt8fe000008vy9wu93j7u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/25/hello-world/" data-id="cjo5kd6gs0001lsssxpy243tm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -125,7 +203,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
     </div>
   </div>
 
@@ -136,6 +214,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/11/06/兼容性/">移动端的兼容性</a>
+          </li>
         
           <li>
             <a href="/2018/10/25/hello-world/">Hello World</a>
