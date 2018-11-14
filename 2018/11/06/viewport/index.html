@@ -4,12 +4,13 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>Hello World | GoldenSide&#39;s Blog</title>
+    <title>移动端的viewport | GoldenSide&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="GoldenSide">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in ">
+    <meta name="description" content="本文章转载自博客园-无双，更加图文并茂
+viewport的概念  通俗的讲，移动设备上的viewport就是设备的屏幕上能用来显示我们的网页的那一块区域，在具体一点，就是浏览器上(也可能是一个app中的webview)用来显示网页的那部分区域，但viewport又不局限于浏览器可视区域的大小，它可能">
     
     
     
@@ -88,10 +89,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/10/25/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2018/11/06/viewport/" title="移动端的viewport" itemprop="url">移动端的viewport</a>
   </h1>
   <p class="article-time">
-    <time datetime="2018-10-25T01:51:18.653Z" itemprop="datePublished">2018-10-25</time>
+    <time datetime="2018-11-06T01:30:15.478Z" itemprop="datePublished">2018-11-06</time>
   </p>
 </header>
 	<div class="article-content">
@@ -99,18 +100,61 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#viewport的概念"><span class="toc-number">1.</span> <span class="toc-text">viewport的概念</span></a></li></ol>
 		</div>
 		
-		<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+		<p> 本文章转载自<a href="http://www.cnblogs.com/2050/p/3877280.html" target="_blank" rel="noopener">博客园</a>-无双，更加图文并茂</p>
+<h2 id="viewport的概念"><a href="#viewport的概念" class="headerlink" title="viewport的概念"></a>viewport的概念</h2><p>  通俗的讲，移动设备上的viewport就是设备的屏幕上能用来显示我们的网页的那一块区域，在具体一点，就是浏览器上(也可能是一个app中的webview)用来显示网页的那部分区域，但viewport又不局限于浏览器可视区域的大小，它可能比浏览器的可视区域要大，也可能比浏览器的可视区域要小。在默认情况下，一般来讲，移动设备上的viewport都是要大于浏览器可视区域的，这是因为考虑到移动设备的分辨率相对于桌面电脑来说都比较小，所以为了能在移动设备上正常显示那些传统的为桌面浏览器设计的网站，移动设备上的浏览器都会把自己默认的viewport设为980px或1024px（也可能是其它值，这个是由设备自己决定的），但带来的后果就是浏览器会出现横向滚动条，因为浏览器可视区域的宽度是比这个默认的viewport的宽度要小的。下图列出了一些设备上浏览器的默认viewport的宽度。</p>
+<p><strong>viewport来源于苹果，我们开发时一般会都是应用以下的一段代码</strong></p>
+<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0,
+maximum-scale=1.0, minimum-scale=1.0, user-scalable=no&quot; /&gt;
+</code></pre><p><strong>在苹果的规范中，meta的viewport中有以下属性:</strong></p>
+<table>
+<thead>
+<tr>
+<th>width</th>
+<th>设置layout viewport  的宽度，为一个正整数，或字符串”width-device”</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>initial-scale</td>
+<td>设置页面的初始缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td>minimum-scale</td>
+<td>允许用户的最小缩放值，为一个</td>
+</tr>
+<tr>
+<td>height</td>
+<td>设置layout viewport  的高度，这个属性对我们并不重要，很少使用</td>
+</tr>
+<tr>
+<td>user-scalable</td>
+<td>是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>以上这段代码是我们经常会用的移动web页面适配的代码，基本意思是：设置浏览器的宽度等于设备宽度，初始缩放比例1:1,最大缩放比例为1:1, 最小缩放比例为1:1,禁止用户缩放操作，然后勒，列举几个兼容性问题（主要针对安卓和ios）：</p>
+</blockquote>
+<hr>
+<p>  <strong> PS </strong>:说明一下“layout viewport” ,“visual viewport”, “ideal viewport”三者的区别</p>
+<blockquote>
+<p>layout viewport是指浏览器的真实宽高，在未设置content的时候，一般会大于设备的宽，visual viewport为屏幕可见宽高，ideal viewport为开发时的理想宽高</p>
+</blockquote>
+<p>  <strong>设置<code>content=&#39;&#39;</code></strong><br>      即将设置为空,安卓和ios都会自我调节dpi(dots per inch)–每一英寸的点数,网页渲染宽度为屏幕宽度。</p>
+<hr>
+<p>  <strong>不设置viewport初始缩放比例</strong><br>     无论你设置viewport的port的width多宽，安卓和ios都会自动计算这个缩放值，以达到页面不出现滚动条的目的。</p>
+<hr>
+<p>  <strong>设置viewport的宽度content=”width=device-width”</strong><br>   <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</code><br>   测试结果:在iPhone和iPad上，无论是横屏还是竖屏，宽度都是竖屏的ideal viewport的宽度，但是还有一句代码可以实现同样的效果，就是设置初始缩放比例  </p>
+<hr>
+<p>  <strong>设置 <code>&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1&quot;&gt;</code></strong><br>    这一句代码同样可以实现和设置为ideal viewport宽度同样的效果，即默认也会为设备的宽度，那么为什么会和上一个设置的效果一样呢?其实解释起来很简单，顾名思义，缩放就是相对屏幕的大小进行缩放，所以我们就得到了ideal viewport了，经测试：<code>content=&quot;initial-scale=1&quot;</code>也可以将viewport设置为 ideal viewport,但是在window phone的ie浏览器上，无论是竖屏还是横屏，都把宽度设为竖屏时ideal viewport的宽度。</p>
+<hr>
+<p> <strong>但如果width 和 initial-scale=1同时出现，并且还出现了冲突呢？比如：</strong><br>  <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=400, initial-scale=1&quot;&gt;</code></p>
+<p>  width=400表示把当前viewport的宽度设为400px，initial-scale=1则表示把当前viewport的宽度设为ideal viewport的宽度，那么浏览器到底该服从哪个命令呢？是书写顺序在后面的那个吗？不是。当遇到这种情况时，浏览器会取它们两个中较大的那个值。例如，当width=400，ideal viewport的宽度为320时，取的是400；当width=400， ideal viewport的宽度为480时，取的是ideal viewport的宽度。（ps:在uc9浏览器中，当initial-scale=1时，无论width属性的值为多少，此时viewport的宽度永远都是ideal viewport的宽度）</p>
+<p>  最后，总结一下，要把当前的viewport宽度设为ideal viewport的宽度，既可以设置 width=device-width，也可以设置 initial-scale=1，但这两者各有一个小缺陷，就是iphone、ipad以及IE 会横竖屏不分，通通以竖屏的ideal viewport宽度为准。所以，最完美的写法应该是，两者都写上去，这样就 initial-scale=1 解决了 iphone、ipad的毛病，width=device-width则解决了IE的毛病：</p>
+<p>   <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</code></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -120,7 +164,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2018/10/25/hello-world/" data-title="Hello World | GoldenSide&#39;s Blog" data-tsina="" class="share clearfix">
+  <div data-url="http://yoursite.com/2018/11/06/viewport/" data-title="移动端的viewport | GoldenSide&#39;s Blog" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -129,21 +173,21 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev">
- <a href="/2018/11/06/viewport/" title="移动端的viewport">
-  <strong>New:</strong><br>
-  <span>
-  移动端的viewport</span>
+
+<div class="next">
+<a href="/2018/10/25/hello-world/" title="Hello World">
+ <strong>Old:</strong><br> 
+ <span>Hello World
+</span>
 </a>
 </div>
-
 
 </nav>
 
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="Hello World" data-thread-key="hello-world" data-author-key="GoldenSide" data-url="http://yoursite.com/post/hello-world"></div>
+	<div class="ds-thread" data-title="移动端的viewport" data-thread-key="viewport" data-author-key="GoldenSide" data-url="http://yoursite.com/post/viewport"></div>
 	
 </section>
 
