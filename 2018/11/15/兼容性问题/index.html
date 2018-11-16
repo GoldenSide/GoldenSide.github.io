@@ -4,14 +4,13 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>我总结git的部分用法 | GoldenSide&#39;s Blog</title>
+    <title>移动端开发中遇到的部分兼容性问题 | GoldenSide&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="GoldenSide">
     
-    <meta name="description" content="git rm &amp;lt;fileName&amp;gt;该命令会调用rm &amp;lt;fileName&amp;gt;,相当于删除文件的同时，git add &amp;lt;fileNmame&amp;gt;然后git commit -m &amp;#39;msg&amp;#39;后待push。
-
-git rm &amp;lt;fileName&amp;gt;强力删除">
+    <meta name="description" content="关于禁止input标签获取焦点
+   一般我们想到的就是 readonly=”readonly”, 但是在ios上这是不够的有几种情况是需要注意，(1) input 作为点击按钮勒类的标签，在ios上点击按钮时，依旧会获取焦点；(2) input 作为普通的只读输入框，在ios上，点击还是可以获取焦">
     
     
     
@@ -90,10 +89,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/11/15/git/" title="我总结git的部分用法" itemprop="url">我总结git的部分用法</a>
+      <a href="/2018/11/15/兼容性问题/" title="移动端开发中遇到的部分兼容性问题" itemprop="url">移动端开发中遇到的部分兼容性问题</a>
   </h1>
   <p class="article-time">
-    <time datetime="2018-11-15T01:53:16.686Z" itemprop="datePublished">2018-11-15</time>
+    <time datetime="2018-11-15T08:33:27.012Z" itemprop="datePublished">2018-11-15</time>
   </p>
 </header>
 	<div class="article-content">
@@ -104,25 +103,40 @@ var _hmt = _hmt || [];
 		
 		</div>
 		
-		<p><code>git rm &lt;fileName&gt;</code><br>该命令会调用<code>rm &lt;fileName&gt;</code>,相当于删除文件的同时，<code>git add &lt;fileNmame&gt;</code>然后<code>git commit -m &#39;msg&#39;</code>后待push。</p>
+		<ul>
+<li><p><strong>关于禁止input标签获取焦点</strong></p>
+<p>   一般我们想到的就是 readonly=”readonly”, 但是在ios上这是不够的<br>有几种情况是需要注意，(1) input 作为点击按钮勒类的标签，在ios上点击按钮时，依旧会获取焦点；(2) input 作为普通的只读输入框，在ios上，点击还是可以获取焦点</p>
+<p><strong>解决办法</strong>:<code>unselectable=&quot;on&quot; onfocus=&quot;this.blur()&quot; readonly=&quot;readonly&quot;</code>三个属性都加上</p>
 <hr>
-<p><code>git rm &lt;fileName&gt;</code><br>强力删除某个文件</p>
+</li>
+<li><p><strong>关于ios上将一串数字渲染位号码，并显示为蓝色的问题，ios这种默认做法是以为用户需要操作这一串数字，所以点击该数字时，它的webvie会呼出内部组件</strong></p>
+<p><strong>解决办法</strong>:在head标签中加<code>&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;/&gt;</code>  </p>
+</li>
+</ul>
 <hr>
-<p><code>git reset HEAD &lt;file&gt;</code><br>会将提交(git commit)本地仓库的代码重新回到缓存区</p>
+<ul>
+<li><p><strong>在ios环境下input进行复制黏贴操作</strong></p>
+<p>我们可能在电脑上复制黏贴，操作溜的飞起，但是丝毫没有去注意复制黏贴时，被操作的内容的转移存储是什么格式的，就算注意到了也可能没有去深思；那么我来解释一下，所有复制黏贴被操作的文本，在系统中为了节省内存，都是以最简单的格式–文本的方式保存的，所以你黏贴过去的不管的是Number类型的还是String类型的数据，系统都默认填充的是String类型的，</p>
+<p>问题来了，我的现实场景是：有一个话费充值的功能，用户不想手动输入，而直接从手机通讯录里面复制一个号码黏贴进去，提交操作使用的jQuery.validate进行校验，在安卓上和ios&gt;V12没有问题，但是在ios&lt;V12时，点击操作提交无效，依然显示号码栏没有输入，并且提交按钮点击无效。</p>
+<p><strong>该兼容性受到input的type影响</strong> 当type=”number”的时侯，低版本的iOS不能将黏贴进去的文本自动转化为number，所以提交的时候jQuery.validate不能获取到input的value值，所以导致报错而无法提交，<br><strong>解决办法</strong>:把可能需要进行复制黏贴操作的input标签的type设置为<code>type=&quot;text&quot;</code></p>
 <hr>
-<p><code>git checkout -- &lt;file&gt;</code><br>   (1)将暂存区域的文件，恢复到工作区，同时也可以将未提交就删除了文件还原工作区，如果使用<code>git rm &lt;fileName&gt;</code>来删除，是无法使用<br>以上的命令来恢复被删除的文件的;<br>   (2)如果要保留被删除的状态，就需要需要提交到本地仓库，即不管你是手动删除还是使用命令<code>git rm &lt;fileName&gt;</code>都需要commit到本地仓库，从才可以在切换分支回来之后，保留改分支对该文件的删除状态；</p>
+</li>
+<li><p><strong>关于absolute定位和fixed定位的兼容性</strong><br>在ios&lt;V12时，有使用fixed定位的弹窗，且弹窗中有输入框的时候，输入框的焦点会发生偏移，有些机子还会出现输入无效的情况，原因是ios系统在呼出软键盘的时候，会将页面上的弹窗等的fixed的定位属性改为absoluted定位, 整个弹出框上移，但是input的焦点还保留在原先的位置，所以input获取焦点的时候，焦点<br><strong>解决办法:</strong>在弹出软键盘的时候使用js将相关的fixed定位都设置为absoluted</p>
 <hr>
-<p><code>git merge &lt;branchName&gt; -m &#39;msg&#39;</code><br>该命令用于分支合并，—用于将要合并的分支合并到当前分支上；</p>
+</li>
+<li><p><strong>一般上拉/下拉加载/刷新的插件 如果被加载的内容中有按钮，可能导致页面的按钮点击事件失效</strong></p>
+<p><strong>解决办法:</strong>手动添加点击事件，添加tap事件，将window.location.href指向a的href的属性值</p>
+</li>
+</ul>
+<blockquote>
+<p>另外使用MUI的时候，发现mui的时候，发现mui不能实现在同一个html文件中初始化多次，一般在swiper中需要加载多次，查看官方文档发现并有解决方案，我找到了一个好的解决办法<a href="https://www.cnblogs.com/liwc/articles/7989561.html" target="_blank" rel="noopener">实现了多次初始化的目的</a></p>
+</blockquote>
 <hr>
-<p><code>git branch -d &lt;branchName&gt;</code><br>该命令用于删除分支，一边用于合并分支之后，在当前分支上删除掉被合并的分支；</p>
+<ul>
+<li><strong>禁止页面上下滑动 iOS和安卓通用</strong><br>在开发中，当有一些弹窗时，我们希望底部主题禁止被滑动，而当弹窗关闭的时候页面恢复滚动。<br><strong>解决办法:</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.body.addEventListener(&apos;touchmove&apos;, function (e) &#123;</span><br><span class="line">       e.preventDefault(); //阻止默认的处理方式(阻止下拉滑动的效果)</span><br><span class="line">&#125;, &#123;passive: false&#125;); //passive 参数不能省略，用来兼容ios和android</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <hr>
-<p><code>git log --graph</code><br> 查看分支合并图</p>
-<hr>
-<p><code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code><br> 将本地分支与远程分支关联上</p>
-<hr>
-<p><code>git remote -v</code><br>查看远程库的版本信息</p>
-<hr>
-<p><code>git checkout -b &lt;branchName&gt; origin/&lt;branchName&gt;</code><br>本地创建与远程仓库对应名称的分支</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -132,7 +146,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2018/11/15/git/" data-title="我总结git的部分用法 | GoldenSide&#39;s Blog" data-tsina="5672424654" class="share clearfix">
+  <div data-url="http://yoursite.com/2018/11/15/兼容性问题/" data-title="移动端开发中遇到的部分兼容性问题 | GoldenSide&#39;s Blog" data-tsina="5672424654" class="share clearfix">
   </div>
 
 </div>
@@ -142,18 +156,18 @@ var _hmt = _hmt || [];
 <nav class="article-nav clearfix">
  
  <div class="prev">
- <a href="/2018/11/15/兼容性问题/" title="移动端开发中遇到的部分兼容性问题">
+ <a href="/2018/11/16/js(辅助代码块)/" title="js辅助代码块">
   <strong>New:</strong><br>
   <span>
-  移动端开发中遇到的部分兼容性问题</span>
+  js辅助代码块</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2018/11/06/viewport/" title="移动端的viewport">
+<a href="/2018/11/15/git/" title="我总结git的部分用法">
  <strong>Old:</strong><br> 
- <span>移动端的viewport
+ <span>我总结git的部分用法
 </span>
 </a>
 </div>
@@ -163,7 +177,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="我总结git的部分用法" data-thread-key="git" data-author-key="GoldenSide" data-url="http://yoursite.com/post/git"></div>
+	<div class="ds-thread" data-title="移动端开发中遇到的部分兼容性问题" data-thread-key="兼容性问题" data-author-key="GoldenSide" data-url="http://yoursite.com/post/兼容性问题"></div>
 	
 </section>
 

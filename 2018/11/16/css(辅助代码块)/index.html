@@ -4,14 +4,13 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
-    <title>我总结git的部分用法 | GoldenSide&#39;s Blog</title>
+    <title>GoldenSide&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="GoldenSide">
     
-    <meta name="description" content="git rm &amp;lt;fileName&amp;gt;该命令会调用rm &amp;lt;fileName&amp;gt;,相当于删除文件的同时，git add &amp;lt;fileNmame&amp;gt;然后git commit -m &amp;#39;msg&amp;#39;后待push。
-
-git rm &amp;lt;fileName&amp;gt;强力删除">
+    <meta name="description" content="title: css辅助代码块
+transition的兼容性写法       12345-webkit-transition: all 1200ms ease;-moz-transition: all 1200ms ease;-o-transition: all 1200ms ease;-ms-tr">
     
     
     
@@ -90,10 +89,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/11/15/git/" title="我总结git的部分用法" itemprop="url">我总结git的部分用法</a>
+      <a href="/2018/11/16/css(辅助代码块)/" title="" itemprop="url"></a>
   </h1>
   <p class="article-time">
-    <time datetime="2018-11-15T01:53:16.686Z" itemprop="datePublished">2018-11-15</time>
+    <time datetime="2018-11-16T11:03:02.899Z" itemprop="datePublished">2018-11-16</time>
   </p>
 </header>
 	<div class="article-content">
@@ -101,28 +100,13 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#title-css辅助代码块"><span class="toc-number">1.</span> <span class="toc-text">title: css辅助代码块</span></a></li></ol>
 		</div>
 		
-		<p><code>git rm &lt;fileName&gt;</code><br>该命令会调用<code>rm &lt;fileName&gt;</code>,相当于删除文件的同时，<code>git add &lt;fileNmame&gt;</code>然后<code>git commit -m &#39;msg&#39;</code>后待push。</p>
-<hr>
-<p><code>git rm &lt;fileName&gt;</code><br>强力删除某个文件</p>
-<hr>
-<p><code>git reset HEAD &lt;file&gt;</code><br>会将提交(git commit)本地仓库的代码重新回到缓存区</p>
-<hr>
-<p><code>git checkout -- &lt;file&gt;</code><br>   (1)将暂存区域的文件，恢复到工作区，同时也可以将未提交就删除了文件还原工作区，如果使用<code>git rm &lt;fileName&gt;</code>来删除，是无法使用<br>以上的命令来恢复被删除的文件的;<br>   (2)如果要保留被删除的状态，就需要需要提交到本地仓库，即不管你是手动删除还是使用命令<code>git rm &lt;fileName&gt;</code>都需要commit到本地仓库，从才可以在切换分支回来之后，保留改分支对该文件的删除状态；</p>
-<hr>
-<p><code>git merge &lt;branchName&gt; -m &#39;msg&#39;</code><br>该命令用于分支合并，—用于将要合并的分支合并到当前分支上；</p>
-<hr>
-<p><code>git branch -d &lt;branchName&gt;</code><br>该命令用于删除分支，一边用于合并分支之后，在当前分支上删除掉被合并的分支；</p>
-<hr>
-<p><code>git log --graph</code><br> 查看分支合并图</p>
-<hr>
-<p><code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code><br> 将本地分支与远程分支关联上</p>
-<hr>
-<p><code>git remote -v</code><br>查看远程库的版本信息</p>
-<hr>
-<p><code>git checkout -b &lt;branchName&gt; origin/&lt;branchName&gt;</code><br>本地创建与远程仓库对应名称的分支</p>
+		<hr>
+<h2 id="title-css辅助代码块"><a href="#title-css辅助代码块" class="headerlink" title="title: css辅助代码块"></a>title: css辅助代码块</h2><ul>
+<li><strong>transition的兼容性写法</strong>       <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transition: all 1200ms ease;</span><br><span class="line">-moz-transition: all 1200ms ease;</span><br><span class="line">-o-transition: all 1200ms ease;</span><br><span class="line">-ms-transition: all 1200ms ease;</span><br><span class="line">transition: all 1200ms ease;</span><br></pre></td></tr></table></figure></li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -132,7 +116,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2018/11/15/git/" data-title="我总结git的部分用法 | GoldenSide&#39;s Blog" data-tsina="5672424654" class="share clearfix">
+  <div data-url="http://yoursite.com/2018/11/16/css(辅助代码块)/" data-title="GoldenSide&#39;s Blog" data-tsina="5672424654" class="share clearfix">
   </div>
 
 </div>
@@ -141,19 +125,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev">
- <a href="/2018/11/15/兼容性问题/" title="移动端开发中遇到的部分兼容性问题">
-  <strong>New:</strong><br>
-  <span>
-  移动端开发中遇到的部分兼容性问题</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2018/11/06/viewport/" title="移动端的viewport">
+<a href="/2018/11/16/bug相关/" title="bug相关">
  <strong>Old:</strong><br> 
- <span>移动端的viewport
+ <span>bug相关
 </span>
 </a>
 </div>
@@ -163,7 +139,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="我总结git的部分用法" data-thread-key="git" data-author-key="GoldenSide" data-url="http://yoursite.com/post/git"></div>
+	<div class="ds-thread" data-title="" data-thread-key="css(辅助代码块)" data-author-key="GoldenSide" data-url="http://yoursite.com/post/css(辅助代码块)"></div>
 	
 </section>
 
